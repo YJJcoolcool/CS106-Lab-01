@@ -6,18 +6,19 @@
  *   Max ops: 4
  *   Rating: 1
  */
-int tmin(void)
-{
-    return 2;
+
+// TMin = 1000 .... 0000
+// So use 1 (.... 0001) and left shift by 31
+int tmin(void) {
+    return 1 << 31;
 }
 
-int test_tmin(void)
-{
+int test_tmin(void) {
     return 0x80000000;
 }
 
 int main(void)
 {
-    printf("expected: %x\n", tmin());
-    printf("actual  : %x\n", test_tmin());
+    printf("expected: %x (%d)\n", tmin(), tmin());
+    printf("actual  : %x (%d)\n", test_tmin(), test_tmin());
 }

@@ -7,20 +7,22 @@
  *   Max ops: 8
  *   Rating: 1
  */
-int bitNor(int x, int y)
-{
-    return 2;
+int bitNor(int x, int y) {
+    return ~x & ~y;
 }
 
-int test_bitNor(int x, int y)
-{
+int test_bitNor(int x, int y) {
     return ~(x | y);
 }
 
-int main(void)
-{
+int main(void) {
     int x = 0;
     int y = 0;
+    printf("expected: %x\n", bitNor(x, y));
+    printf("actual  : %x\n", test_bitNor(x, y));
+
+    x = 6;
+    y = 5;
     printf("expected: %x\n", bitNor(x, y));
     printf("actual  : %x\n", test_bitNor(x, y));
 }

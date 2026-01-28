@@ -8,13 +8,16 @@
  *   Max ops: 14
  *   Rating: 1
  */
-int bitMatch(int x, int y)
-{
-    return 2;
+
+// 0x7 = 0111
+// 0xE = 1110
+//~0x7 = 1000
+//^0xE = 0110 = 0x6
+int bitMatch(int x, int y) {
+    return x ^ ~y;
 }
 
-int test_bitMatch(int x, int y)
-{
+int test_bitMatch(int x, int y) {
     int i;
     int result = 0;
     for (i = 0; i < 32; i++) {
@@ -25,10 +28,24 @@ int test_bitMatch(int x, int y)
     return result;
 }
 
-int main(void)
-{
+int main(void) {
     int x = 0;
     int y = 0;
+    printf("expected: %x\n", bitMatch(x, y));
+    printf("actual  : %x\n", test_bitMatch(x, y));
+
+    x = 28;
+    y = 28;
+    printf("expected: %x\n", bitMatch(x, y));
+    printf("actual  : %x\n", test_bitMatch(x, y));
+
+    x = 28;
+    y = 10228327;
+    printf("expected: %x\n", bitMatch(x, y));
+    printf("actual  : %x\n", test_bitMatch(x, y));
+
+    x = 0xFFFF0000;
+    y = 0x0000FFFF;
     printf("expected: %x\n", bitMatch(x, y));
     printf("actual  : %x\n", test_bitMatch(x, y));
 }
